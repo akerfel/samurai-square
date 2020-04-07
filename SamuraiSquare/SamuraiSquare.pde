@@ -5,7 +5,7 @@ int h = 30;
 float vx = 4;
 float vy = 0;
 int floor = 700;
-float upTickSpeed = 10;
+float upTickSpeed = 11;
 float gravity = 0.8;
 
 void setup() {
@@ -42,13 +42,24 @@ void updatePosition() {
 
 void keyPressed() {
   if (key == ' ' && vy == 0) {
-      vy -= upTickSpeed;
+    vy -= upTickSpeed;
   }
 }
 
 void drawEverything() {
-    clear();
-    fill(255, 0, 0);
-    rect(x, y, w, h);
-    
+  clear();
+  drawPlayer();   
+  drawFloor();
+}
+
+void drawPlayer() {
+  fill(255, 0, 0);
+  rect(x, y - h, w, h);
+}
+
+void drawFloor() {
+  fill(133,94,66);
+  rectMode(CORNERS);
+  rect(0, floor, width, height);
+  rectMode(CORNER);
 }
