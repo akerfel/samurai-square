@@ -10,6 +10,19 @@ boolean godMode = false;
 void setup() {
     size(1000, 800);
     player = new Player();
+    // createStartEnemies(3); // closer to the ground. not using atm.
+}
+
+void createStartEnemies(int n) {
+  for (int i = 0; i < n; i++) {
+    Enemy newEnemy = new Enemy();
+    int startY = floor - i * 200;
+    if (startY < 0) {
+      startY = 0;
+    }
+    newEnemy.y = startY;
+    //enemies.add(newEnemy);
+  }
 }
 
 void draw() {
@@ -60,8 +73,8 @@ boolean rectsAreColliding(float ax, float ay, int aw, int ah, float bx, float by
 }
 
 void keyPressed() {
-  if (key == ' ' && player.vy == 0) {
-    player.vy -= player.upTickSpeed;
+  if (key == ' ') {
+    player.jump();
   }
   if (!player.isAlive && key == ' ') {
     setup();

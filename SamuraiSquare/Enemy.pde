@@ -1,6 +1,6 @@
 public class Enemy {
-  float x;
-  float y = 50;
+  int x;
+  int y = 50;
   int w = 25;
   int h = 25;
   float vx = 3;
@@ -14,12 +14,11 @@ public class Enemy {
   }
   
   void randomizeStartPosition() {
-    x = random(0, width);
+    x = int(random(0, width));
   }
   
   void updatePosition() {
     if (isFalling) {
-      println("is falling, y: " + y);
       y += vy;
       if (y >= floor) {
         y = floor;

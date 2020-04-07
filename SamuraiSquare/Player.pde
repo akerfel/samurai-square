@@ -6,7 +6,7 @@ public class Player {
   
   float vx = 4;
   float vy = 0;
-  float upTickSpeed = 11;
+  float upTickSpeed = 10;
   float gravity = 0.8;
   float xsword = x;
   float ysword = y;
@@ -18,11 +18,31 @@ public class Player {
   int ticksTillAttackDone = 0;
   int ticksWhenAttackStart = 10;
   
+  boolean isInFirstJump = false;
+  boolean isInDoubleJump = false;
   boolean isAlive = true;
   
+  int jumpCounterInAir = 0;
+  
+int temp = 0;
+
 void update() {
   updatePosition();
   checkIfDie();
+}
+
+
+void jump() {
+  if (jumpCounterInAir == 0 || jumpCounterInAir == 1) {
+    uptick();
+    jumpCounterInAir++;
+  }
+}
+
+void uptick() {
+  player.vy = -player.upTickSpeed;
+  temp++;
+  println("upticks: " + temp);
 }
 
 void checkIfDie() {
@@ -45,6 +65,10 @@ void updatePosition() {
   }
   
   y += vy;
+  
+  if (y >= floor && vy > 0) {
+    jumpCounterInAir = 0;
+  }
   if (y > floor) {
     y = floor;  
     vy = 0;
