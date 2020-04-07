@@ -77,6 +77,7 @@ void keyPressed() {
     player.jump();
   }
   if (!player.isAlive && key == ' ') {
+    enemies.clear();
     setup();
   }
   if (key == CODED) {
