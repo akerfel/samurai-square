@@ -1,13 +1,14 @@
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-Enemy enemy1;
+
 Player player;
 int floor = 700;
+int enemySpawnTimerInterval = 150;
+int enemySpawnTimer = 10;
+
 
 void setup() {
-    size(800, 800);
-    enemy1 = new Enemy();
+    size(1400, 800);
     player = new Player();
-    enemies.add(enemy1);
 }
 
 void draw() {
@@ -18,6 +19,19 @@ void draw() {
 void updateLogic() {
   player.updatePosition();
   updateEnemies();
+  updateEnemySpawnTimer();
+}
+
+void updateEnemySpawnTimer() {
+  enemySpawnTimer--;
+  if (enemySpawnTimer < 0) {
+    spawnEnemy();
+    enemySpawnTimer = enemySpawnTimerInterval;
+  }
+}
+
+void spawnEnemy() {
+    enemies.add(new Enemy());
 }
 
 void updateEnemies() {
@@ -58,8 +72,8 @@ void keyPressed() {
 void drawEverything() {
   clear();
   drawFloor();
-  drawPlayer();   
   drawEnemies();
+  drawPlayer();   
 }
 
 void drawEnemies() {

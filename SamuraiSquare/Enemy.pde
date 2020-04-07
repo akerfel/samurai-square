@@ -3,7 +3,7 @@ public class Enemy {
   float y = floor;
   int w = 25;
   int h = 25;
-  float vxe = 0.1;
+  float vx = 3;
   float vy = 0;
   boolean isAlive = true;
   
@@ -14,16 +14,16 @@ public class Enemy {
   void randomizeStartPosition() {
     if (random(0, 1) < 0.5) {
       x = 0;  
-      vxe = 0.5;
+      vx = abs(vx);
     }
     else {
       x = width - w;
-      vxe = -0.5;
+      vx = -abs(vx);
     }
   }
   
   void updatePosition() {
-    x += vxe;
+    x += vx;
   }
   
   void update() {
