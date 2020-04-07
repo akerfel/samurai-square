@@ -1,11 +1,13 @@
 public class Enemy {
   float x;
-  float y = floor;
+  float y = 50;
   int w = 25;
   int h = 25;
   float vx = 3;
-  float vy = 0;
+  float vy = 2;
   boolean isAlive = true;
+  // when spawn: fall to ground, so it wont just spawn directly on the player
+  boolean isFalling = true; 
   
   public Enemy() {
     randomizeStartPosition();
@@ -13,22 +15,34 @@ public class Enemy {
   
   void randomizeStartPosition() {
     if (random(0, 1) < 0.5) {
-      x = 0;  
+      x = 50;  
       vx = abs(vx);
     }
     else {
-      x = width - w;
+      x = width - 50;
       vx = -abs(vx);
     }
   }
   
   void updatePosition() {
-    x += vx;
-    if (x + w > width) {
-      vx = -abs(vx);  
+    if (isFalling) {
+      println("is falling, y: " + y);
+      y += vy;
+      if (y >= floor) {
+        y = floor;
+        isFalling = false;
+        vy = 0;
+      }
     }
-    if (x < 0) {
-      vx = abs(vx);  
+    // Else is on floor
+    else {
+      x += vx;
+      if (x + w > width) {
+        vx = -abs(vx);  
+      }
+      if (x < 0) {
+        vx = abs(vx);  
+      }
     }
   }
   

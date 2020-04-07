@@ -4,10 +4,11 @@ Player player;
 int floor = 700;
 int enemySpawnTimerInterval = 150;
 int enemySpawnTimer = 10;
+boolean godMode = false;
 
 
 void setup() {
-    size(1400, 800);
+    size(1000, 800);
     player = new Player();
 }
 
@@ -87,7 +88,14 @@ void drawEverything() {
   clear();
   drawFloor();
   drawEnemies();
-  drawPlayer();   
+  drawPlayer(); 
+  drawGodModeText();
+}
+
+void drawGodModeText() {
+  if (godMode) {
+    text("God Mode: ON", width - 150, 10);
+  }
 }
 
 void drawEnemies() {

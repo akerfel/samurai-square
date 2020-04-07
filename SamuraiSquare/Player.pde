@@ -26,9 +26,11 @@ void update() {
 }
 
 void checkIfDie() {
-  for (Enemy enemy : enemies) {
-    if (enemy.isAlive && rectsAreColliding(x, y, w, h, enemy.x, enemy.y, enemy.w, enemy.h)) {
-      isAlive = false;
+  if (!godMode) { 
+    for (Enemy enemy : enemies) {
+      if (enemy.isAlive && rectsAreColliding(x, y, w, h, enemy.x, enemy.y, enemy.w, enemy.h)) {
+        isAlive = false;
+      }
     }
   }
 }
