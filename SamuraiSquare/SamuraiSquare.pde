@@ -54,8 +54,20 @@ void drawEnemies() {
 void drawPlayer() {
   fill(255, 0, 0);
   rect(player.x, player.y - player.h, player.w, player.h);
+  drawSword();
+  }
+
+void drawSword() {
   fill(217, 217, 217);
-  rect(player.xsword + player.w/4, player.ysword - player.h*2/3, player.wsword, player.hsword);
+  int swordHeight = player.hsword;
+  int swordWidth = player.wsword;
+  // If attacking right: swap sword width with height
+  if (player.isAttackingRight) {
+    int temp = swordHeight;
+    swordHeight = swordWidth;
+    swordWidth = temp;
+  }
+  rect(player.xsword + player.w/4, player.ysword - player.h*2/3, swordWidth, swordHeight);
 }
 
 void drawEnemy(Enemy enemy) {

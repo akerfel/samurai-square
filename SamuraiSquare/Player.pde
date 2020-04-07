@@ -10,8 +10,8 @@ public class Player {
   float gravity = 0.8;
   float xsword = x;
   float ysword = y;
-  float wsword = 6;
-  float hsword = 45;
+  int wsword = 6;
+  int hsword = 45;
   
   boolean isAttackingRight = false;
   int ticksTillAttackDone = 0;
