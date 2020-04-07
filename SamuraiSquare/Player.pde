@@ -11,11 +11,12 @@ public class Player {
   float xsword = x;
   float ysword = y;
   int wsword = 6;
-  int hsword = 45;
+  int hsword = h * 3/2;
   
-  boolean isAttackingRight = false;
+  boolean isAttacking = false;
+  String attackDirection = "right";
   int ticksTillAttackDone = 0;
-  int ticksWhenAttackStart = 30;
+  int ticksWhenAttackStart = 10;
   
   
 void updatePosition() {
@@ -37,18 +38,30 @@ void updatePosition() {
   }
   xsword = x;
   ysword = y;
-  if (isAttackingRight) {
-    xsword += w;  
+  if (isAttacking) {
+    if (attackDirection.equals("right")) {
+      xsword += w;  
+    }
+    else if (attackDirection.equals("left")) {
+      xsword -= 2 * w;
+    }
+    else if (attackDirection.equals("up")) {
+      ysword -= 2 * h;
+    }
+    else if (attackDirection.equals("down")) {
+      ysword += h;
+    }
     ticksTillAttackDone--;
   }
   if (ticksTillAttackDone == 0) {
-    isAttackingRight = false;  
+    isAttacking = false;  
   }
   
 }
 
-void attackRight() {
-  isAttackingRight = true;
+void attack(String direction) {
+  isAttacking = true;
+  attackDirection = direction;
   ticksTillAttackDone = ticksWhenAttackStart; 
 }
 

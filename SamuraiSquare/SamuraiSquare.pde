@@ -32,7 +32,16 @@ void keyPressed() {
   }
   if (key == CODED) {
       if (keyCode == RIGHT) {
-        player.attackRight();
+        player.attack("right");
+      }
+      if (keyCode == LEFT) {
+        player.attack("left");
+      }
+      if (keyCode == UP) {
+        player.attack("up");
+      }
+      if (keyCode == DOWN) {
+        player.attack("down");
       }
     }
 }
@@ -47,7 +56,6 @@ void drawEverything() {
 void drawEnemies() {
   for (Enemy enemy : enemies) {
       drawEnemy(enemy); 
-      println("drew enemy at " + enemy.x);
     }
 }
 
@@ -61,13 +69,13 @@ void drawSword() {
   fill(217, 217, 217);
   int swordHeight = player.hsword;
   int swordWidth = player.wsword;
-  // If attacking right: swap sword width with height
-  if (player.isAttackingRight) {
+  // If attacking left or right: swap sword width with height
+  if (player.isAttacking && player.attackDirection.equals("right") || player.attackDirection.equals("left")) {
     int temp = swordHeight;
     swordHeight = swordWidth;
     swordWidth = temp;
   }
-  rect(player.xsword + player.w/4, player.ysword - player.h*2/3, swordWidth, swordHeight);
+  rect(player.xsword + player.w/2, player.ysword - player.h*2/3, swordWidth, swordHeight);
 }
 
 void drawEnemy(Enemy enemy) {
