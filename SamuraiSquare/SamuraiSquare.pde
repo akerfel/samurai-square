@@ -17,13 +17,22 @@ void draw() {
 
 void updateLogic() {
   player.updatePosition();
-  updateEnemyPositions();
+  updateEnemies();
 }
 
-void updateEnemyPositions() {
+void updateEnemies() {
     for (Enemy enemy :enemies) {
-      enemy.updatePosition();  
+      enemy.update();  
     }
+}
+
+// Returns true if the two rectangels a and b are colliding
+boolean rectsAreColliding(float ax, float ay, int aw, int ah, float bx, float by, int bw, int bh) {
+   return 
+   (ax < bx + bw &&
+   ax + aw > bx &&
+   ay < by + bh &&
+   ay + ah > by);
 }
 
 void keyPressed() {
@@ -79,7 +88,12 @@ void drawSword() {
 }
 
 void drawEnemy(Enemy enemy) {
-  fill(0, 100, 0);
+  if (enemy.isAlive) { 
+    fill(0, 100, 0); 
+  }
+  else {
+    fill(147,130,0); 
+  }
   rect(enemy.x, enemy.y - enemy.h, enemy.w, enemy.h);
 }
 

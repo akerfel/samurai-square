@@ -5,6 +5,7 @@ public class Enemy {
   int h = 25;
   float vxe = 0.1;
   float vy = 0;
+  boolean isAlive = true;
   
   public Enemy() {
     randomizeStartPosition();
@@ -23,5 +24,26 @@ public class Enemy {
   
   void updatePosition() {
     x += vxe;
+  }
+  
+  void update() {
+     if (isAlive) {
+       updatePosition();
+       checkIfHit();
+     }
+  }
+  
+  void checkIfHit() {
+    if (player.isAttackingUpOrDown()) {
+      if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.wsword, player.hsword)) {
+        isAlive = false;
+      }
+    }
+    // swap sword width and height if attacking left or right 
+    else if (player.isAttackingLeftOrRight()) {
+      if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.hsword, player.wsword)) {
+        isAlive = false;
+      }
+    }
   }
 }

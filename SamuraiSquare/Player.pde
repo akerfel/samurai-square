@@ -59,6 +59,14 @@ void updatePosition() {
   
 }
 
+boolean isAttackingLeftOrRight() {
+    return (isAttacking && (attackDirection.equals("right") || attackDirection.equals("left")));
+}
+
+boolean isAttackingUpOrDown() {
+    return (isAttacking && (attackDirection.equals("up") || attackDirection.equals("down")));
+}
+
 void attack(String direction) {
   isAttacking = true;
   attackDirection = direction;
