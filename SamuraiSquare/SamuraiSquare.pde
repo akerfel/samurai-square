@@ -1,5 +1,8 @@
-int x = 350;
-int y = 700;
+ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+Enemy enemy1;
+
+float x = 350;
+float y = 700;
 int w = 30;
 int h = 30;
 float vx = 4;
@@ -10,6 +13,8 @@ float gravity = 0.8;
 
 void setup() {
     size(800, 800);
+    enemy1 = new Enemy();
+    enemies.add(enemy1);
 }
 
 void draw() {
@@ -18,10 +23,17 @@ void draw() {
 }
 
 void updateLogic() {
-  updatePosition();
+  updatePlayerPosition();
+  updateEnemyPositions();
 }
 
-void updatePosition() {
+void updateEnemyPositions() {
+    for (Enemy enemy :enemies) {
+      enemy.updatePosition();  
+    }
+}
+
+void updatePlayerPosition() {
   x += vx;
   if (x + w > width) {
     vx = -abs(vx);  
@@ -48,13 +60,26 @@ void keyPressed() {
 
 void drawEverything() {
   clear();
-  drawPlayer();   
   drawFloor();
+  drawPlayer();   
+  drawEnemies();
+}
+
+void drawEnemies() {
+  for (Enemy enemy : enemies) {
+      drawEnemy(enemy); 
+      println("drew enemy at " + enemy.x);
+    }
 }
 
 void drawPlayer() {
   fill(255, 0, 0);
   rect(x, y - h, w, h);
+}
+
+void drawEnemy(Enemy enemy) {
+  fill(0, 100, 0);
+  rect(enemy.x, enemy.y - enemy.h, enemy.w, enemy.h);
 }
 
 void drawFloor() {
