@@ -26,12 +26,15 @@ void updateEnemyPositions() {
     }
 }
 
-
-
 void keyPressed() {
   if (key == ' ' && player.vy == 0) {
     player.vy -= player.upTickSpeed;
   }
+  if (key == CODED) {
+      if (keyCode == RIGHT) {
+        player.attackRight();
+      }
+    }
 }
 
 void drawEverything() {
@@ -51,6 +54,8 @@ void drawEnemies() {
 void drawPlayer() {
   fill(255, 0, 0);
   rect(player.x, player.y - player.h, player.w, player.h);
+  fill(217, 217, 217);
+  rect(player.xsword + player.w/4, player.ysword - player.h*2/3, player.wsword, player.hsword);
 }
 
 void drawEnemy(Enemy enemy) {

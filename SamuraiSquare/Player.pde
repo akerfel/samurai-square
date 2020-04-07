@@ -8,6 +8,15 @@ public class Player {
   float vy = 0;
   float upTickSpeed = 11;
   float gravity = 0.8;
+  float xsword = x;
+  float ysword = y;
+  float wsword = 6;
+  float hsword = 45;
+  
+  boolean isAttackingRight = false;
+  int ticksTillAttackDone = 0;
+  int ticksWhenAttackStart = 30;
+  
   
 void updatePosition() {
   x += vx;
@@ -26,5 +35,21 @@ void updatePosition() {
   if (y < floor) {
     vy += gravity;
   }
+  xsword = x;
+  ysword = y;
+  if (isAttackingRight) {
+    xsword += w;  
+    ticksTillAttackDone--;
+  }
+  if (ticksTillAttackDone == 0) {
+    isAttackingRight = false;  
+  }
+  
 }
+
+void attackRight() {
+  isAttackingRight = true;
+  ticksTillAttackDone = ticksWhenAttackStart; 
+}
+
 }

@@ -23,6 +23,5 @@ public class Enemy {
   
   void updatePosition() {
     x += vxe;
-    println("my pos: " + x);
   }
 }
