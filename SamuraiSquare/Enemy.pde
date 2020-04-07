@@ -24,6 +24,12 @@ public class Enemy {
   
   void updatePosition() {
     x += vx;
+    if (x + w > width) {
+      vx = -abs(vx);  
+    }
+    if (x < 0) {
+      vx = abs(vx);  
+    }
   }
   
   void update() {
