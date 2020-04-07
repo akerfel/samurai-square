@@ -12,12 +12,21 @@ void setup() {
 }
 
 void draw() {
-    drawEverything();
-    updateLogic();
+    if (player.isAlive) {
+      drawEverything();
+      updateLogic();
+    }
+    else {
+      gameOver();
+    }
+}
+
+void gameOver() {
+  drawGameOver();
 }
 
 void updateLogic() {
-  player.updatePosition();
+  player.update();
   updateEnemies();
   updateEnemySpawnTimer();
 }
@@ -53,6 +62,9 @@ void keyPressed() {
   if (key == ' ' && player.vy == 0) {
     player.vy -= player.upTickSpeed;
   }
+  if (!player.isAlive && key == ' ') {
+    setup();
+  }
   if (key == CODED) {
       if (keyCode == RIGHT) {
         player.attack("right");
@@ -67,6 +79,8 @@ void keyPressed() {
         player.attack("down");
       }
     }
+    
+   
 }
 
 void drawEverything() {
@@ -116,4 +130,8 @@ void drawFloor() {
   rectMode(CORNERS);
   rect(0, floor, width, height);
   rectMode(CORNER);
+}
+
+void drawGameOver() {
+  text("Game over", width/2, height/2);
 }

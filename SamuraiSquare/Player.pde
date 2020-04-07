@@ -18,7 +18,21 @@ public class Player {
   int ticksTillAttackDone = 0;
   int ticksWhenAttackStart = 10;
   
+  boolean isAlive = true;
   
+void update() {
+  updatePosition();
+  checkIfDie();
+}
+
+void checkIfDie() {
+  for (Enemy enemy : enemies) {
+    if (enemy.isAlive && rectsAreColliding(x, y, w, h, enemy.x, enemy.y, enemy.w, enemy.h)) {
+      isAlive = false;
+    }
+  }
+}
+
 void updatePosition() {
   x += vx;
   if (x + w > width) {
