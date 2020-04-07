@@ -14,14 +14,7 @@ public class Enemy {
   }
   
   void randomizeStartPosition() {
-    if (random(0, 1) < 0.5) {
-      x = 50;  
-      vx = abs(vx);
-    }
-    else {
-      x = width - 50;
-      vx = -abs(vx);
-    }
+    x = random(0, width);
   }
   
   void updatePosition() {
