@@ -45,6 +45,23 @@ void drawEnemy(Enemy enemy) {
     fill(147,130,0); 
   }
   rect(enemy.x, enemy.y - enemy.h, enemy.w, enemy.h);
+  drawEnemyArmor(enemy);
+}
+
+void drawEnemyArmor(Enemy enemy) {
+  fill(98, 74, 46);
+  if (enemy.hasTopArmor) {
+    rect(enemy.x, enemy.y - enemy.h, enemy.w, enemy.h/4);
+  }
+  if (enemy.hasBottomArmor) {
+    rect(enemy.x, enemy.y + enemy.h * 3/4 - enemy.h, enemy.w, enemy.h / 4);
+  }
+  if (enemy.hasLeftArmor) {
+    rect(enemy.x, enemy.y - enemy.h, enemy.w/4, enemy.h);
+  }
+  if (enemy.hasRightArmor) {
+    rect(enemy.x + enemy.w * 3/4, enemy.y - enemy.h, enemy.w / 4, enemy.h);
+  }
 }
 
 void drawFloor() {

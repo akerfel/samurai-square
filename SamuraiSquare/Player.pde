@@ -1,12 +1,12 @@
 public class Player {
   float x = 350;
   float y = 700;
-  int w = 30;
-  int h = 30;
+  int w = 40;
+  int h = 40;
 
   float vx = 4;
   float vy = 0;
-  float upTickSpeed = 10;
+  float upTickSpeed = 11;
   float gravity = 0.8;
   float xsword = x;
   float ysword = y;

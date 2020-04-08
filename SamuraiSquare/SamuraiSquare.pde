@@ -1,3 +1,4 @@
+
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 Player player;

@@ -1,11 +1,27 @@
+import java.util.Iterator;
+
+boolean shouldRemoveDeadEnemies = true;
+
 int floor = 700;
-int enemySpawnTimerInterval = 150;
+int enemySpawnTimerInterval = 250;
 int enemySpawnTimer = 10;
 
 void updateLogic() {
   player.update();
   updateEnemies();
   updateEnemySpawnTimer();
+  if (shouldRemoveDeadEnemies) {
+    removeDeadEnemies();
+  }
+}
+
+void removeDeadEnemies() {
+  Iterator<Enemy> itEnemies = enemies.iterator();
+  while (itEnemies.hasNext()) {
+    if (!itEnemies.next().isAlive) {
+      itEnemies.remove();
+    }
+  }
 }
 
 void updateEnemySpawnTimer() {
