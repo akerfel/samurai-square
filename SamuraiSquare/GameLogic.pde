@@ -1,3 +1,7 @@
+int floor = 700;
+int enemySpawnTimerInterval = 150;
+int enemySpawnTimer = 10;
+
 void updateLogic() {
   player.update();
   updateEnemies();
@@ -18,13 +22,13 @@ void spawnEnemy() {
 
 void updateEnemies() {
     for (Enemy enemy :enemies) {
-      enemy.update();  
+      enemy.update();
     }
 }
 
 // Returns true if the two rectangels a and b are colliding
 boolean rectsAreColliding(float ax, float ay, int aw, int ah, float bx, float by, int bw, int bh) {
-   return 
+   return
    (ax < bx + bw &&
    ax + aw > bx &&
    ay < by + bh &&
