@@ -42,7 +42,6 @@ void jump() {
 void uptick() {
   player.vy = -player.upTickSpeed;
   temp++;
-  println("upticks: " + temp);
 }
 
 void checkIfDie() {
