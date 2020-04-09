@@ -13,8 +13,7 @@ public class Player {
   int wsword = 6;
   int hsword = h * 2;
 
-  boolean isAttacking = false;
-  String attackDirection = "right";
+  String swordDirection = "right";
   int ticksTillAttackDone = 0;
   int ticksWhenAttackStart = 10;
 
@@ -98,13 +97,13 @@ void updatePosition() {
       vx_temp = -dashSpeed;
     }
   }
-  updatexpos(vx_temp);
+  updateXpos(vx_temp);
   if (!(dashTimer > 0)) {
-    updateypos();
+    updateYpos();
   }
 }
 
-void updatexpos(float vx_temp) {
+void updateXpos(float vx_temp) {
   x += vx_temp;
   if (x + w > width) {
     vx = -abs(vx);
@@ -116,7 +115,7 @@ void updatexpos(float vx_temp) {
   }
 }
 
-void updateypos() {
+void updateYpos() {
   y += vy;
   if (y >= floor && vy > 0) {
     jumpCounterInAir = 0;
@@ -133,38 +132,26 @@ void updateypos() {
 void updateSwordPosition() {
     xsword = x;
     ysword = y;
-    if (isAttacking) {
-      if (attackDirection.equals("right")) {
-        xsword += w;
-      }
-      else if (attackDirection.equals("left")) {
-        xsword -= 2 * w;
-      }
-      else if (attackDirection.equals("up")) {
-        ysword -= 2 * h;
-      }
-      else if (attackDirection.equals("down")) {
-        ysword += h;
-      }
-      ticksTillAttackDone--;
+    if (swordDirection.equals("right")) {
+      xsword += w;
     }
-    if (ticksTillAttackDone == 0) {
-      isAttacking = false;
+    else if (swordDirection.equals("left")) {
+      xsword -= 2 * w;
+    }
+    else if (swordDirection.equals("up")) {
+      ysword -= 2 * h;
+    }
+    else if (swordDirection.equals("down")) {
+      ysword += h;
     }
 }
 
-boolean isAttackingLeftOrRight() {
-    return (isAttacking && (attackDirection.equals("right") || attackDirection.equals("left")));
+boolean swordIsLeftOrRight() {
+    return (swordDirection.equals("right") || swordDirection.equals("left"));
 }
 
-boolean isAttackingUpOrDown() {
-    return (isAttacking && (attackDirection.equals("up") || attackDirection.equals("down")));
-}
-
-void attack(String direction) {
-  isAttacking = true;
-  attackDirection = direction;
-  ticksTillAttackDone = ticksWhenAttackStart;
+boolean swordIsUpOrDown() {
+    return (swordDirection.equals("up") || swordDirection.equals("down"));
 }
 
 }

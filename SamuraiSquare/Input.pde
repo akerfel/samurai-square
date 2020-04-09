@@ -8,16 +8,16 @@ void keyPressed() {
   }
   if (key == CODED) {
       if (keyCode == RIGHT) {
-        player.attack("right");
+        player.swordDirection = "right";
       }
       if (keyCode == LEFT) {
-        player.attack("left");
+        player.swordDirection = "left";
       }
       if (keyCode == UP) {
-        player.attack("up");
+        player.swordDirection = "up";
       }
       if (keyCode == DOWN) {
-        player.attack("down");
+        player.swordDirection = "down";
       }
       if (keyCode == SHIFT) {
         player.activateDash();

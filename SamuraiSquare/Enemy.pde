@@ -72,18 +72,18 @@ public class Enemy {
   }
   
   void checkIfHit() {
-    if (player.isAttackingUpOrDown()) {
+    if (player.swordIsUpOrDown()) {
       if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.wsword, player.hsword)) {
-        if ((!(player.attackDirection.equals("down") && this.hasTopArmor)) && (!(player.attackDirection.equals("up") && this.hasBottomArmor))) {
+        if ((!(player.swordDirection.equals("down") && this.hasTopArmor)) && (!(player.swordDirection.equals("up") && this.hasBottomArmor))) {
           isAlive = false;
           score++;
         }
       }
     }
     // swap sword width and height if attacking left or right 
-    else if (player.isAttackingLeftOrRight()) {
+    else if (player.swordIsLeftOrRight()) {
       if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.hsword, player.wsword)) {
-        if ((!(player.attackDirection.equals("left") && this.hasRightArmor)) && (!(player.attackDirection.equals("right") && this.hasLeftArmor))) {
+        if ((!(player.swordDirection.equals("left") && this.hasRightArmor)) && (!(player.swordDirection.equals("right") && this.hasLeftArmor))) {
           isAlive = false;
           score++;
         }

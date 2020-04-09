@@ -44,7 +44,7 @@ void drawSword() {
   int swordHeight = player.hsword;
   int swordWidth = player.wsword;
   // If attacking left or right: swap sword width with height
-  if (player.isAttacking && player.attackDirection.equals("right") || player.attackDirection.equals("left")) {
+  if (player.swordIsLeftOrRight()) {
     int temp = swordHeight;
     swordHeight = swordWidth;
     swordWidth = temp;
