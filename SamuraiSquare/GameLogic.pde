@@ -34,6 +34,10 @@ void updateEnemySpawnTimer() {
   }
 }
 
+void gameOver() {
+  gameState = GameState.GAMEOVER;  
+}
+
 void spawnEnemy() {
     enemies.add(new Enemy());
 }

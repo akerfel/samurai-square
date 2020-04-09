@@ -1,7 +1,6 @@
 public class Player {
   
   // Misc 
-  boolean isAlive = true;
   float gravity = 0.8;
   
   // Position
@@ -83,7 +82,7 @@ void checkIfDie() {
   if (!godMode) {
     for (Enemy enemy : enemies) {
       if (enemy.isAlive && rectsAreColliding(x, y, w, h, enemy.x, enemy.y, enemy.w, enemy.h)) {
-        isAlive = false;
+        gameOver();
       }
     }
   }

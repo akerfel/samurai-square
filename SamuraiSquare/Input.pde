@@ -1,11 +1,14 @@
 void keyPressed() {
   if (key == ' ') {
-    player.deactiveDash();
-    player.jump();
+    if (gameState == GameState.GAMEACTIVE) {
+      player.deactiveDash();
+      player.jump();
+    }
+    if (gameState == GameState.GAMEOVER) {
+      resetGame();
+    }
   }
-  if (!player.isAlive && key == ' ') {
-    resetGame();
-  }
+  
   if (key == CODED) {
       if (keyCode == RIGHT) {
         player.swordDirection = "right";

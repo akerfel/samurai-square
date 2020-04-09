@@ -6,17 +6,29 @@ ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 boolean godMode = false;
 boolean showDashesReady = false;    // should probably be turned off. Too much info at once.
 
+public enum GameState {
+  GAMEOVER,
+  STARTSCREEN,
+  GAMEACTIVE
+}
+GameState gameState;
+
 void setup() {
     size(1000, 800);
     player = new Player();
+    gameState = GameState.GAMEACTIVE;
 }
 
 void draw() {
-    if (player.isAlive) {
+  switch(gameState) {
+    case GAMEACTIVE:
       drawEverything();
       updateLogic();
-    }
-    else {
+      break;
+    case GAMEOVER:
       drawGameOver();
-    }
+      break;
+    case STARTSCREEN:
+      break;
+  }
 }
