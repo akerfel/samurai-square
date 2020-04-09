@@ -3,8 +3,7 @@ void keyPressed() {
     player.jump();
   }
   if (!player.isAlive && key == ' ') {
-    enemies.clear();
-    setup();
+    resetGame();
   }
   if (key == CODED) {
       if (keyCode == RIGHT) {

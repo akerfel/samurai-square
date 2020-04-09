@@ -52,3 +52,9 @@ boolean rectsAreColliding(float ax, float ay, int aw, int ah, float bx, float by
    ay < by + bh &&
    ay + ah > by);
 }
+
+void resetGame() {
+  score = 0;
+  enemies.clear();
+  setup();  
+}
