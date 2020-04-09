@@ -3,8 +3,8 @@ public class Enemy {
   int y = 50;
   int w = 35;
   int h = 35;
-  float vx = 3;
-  float vy = 2;
+  float vx = 2.5;
+  float vy = 2.5;
   boolean isAlive = true;
   // when spawn: fall to ground, so it wont just spawn directly on the player
   boolean isFalling = true; 
@@ -46,8 +46,8 @@ public class Enemy {
   void updatePosition() {
     if (isFalling) {
       y += vy;
-      if (y >= floor) {
-        y = floor;
+      if (y + h >= floor) {
+        y = floor - h;
         isFalling = false;
         vy = 0;
       }

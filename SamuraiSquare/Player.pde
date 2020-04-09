@@ -1,10 +1,10 @@
 public class Player {
-  float x = 350;
-  float y = 700;
+  int x = 350;
+  int y = 700;
   int w = 40;
   int h = 40;
 
-  float vx = 4;
+  float vx = 5;
   float vy = 0;
   float upTickSpeed = 11;
   float gravity = 0.8;
@@ -30,7 +30,7 @@ public class Player {
   // Dash. Temporarily increases vx and deactives gravity
   int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
   int dashTimer = 0;      // time left until speed boost ends
-  int dashCooldownStartValue = 180;
+  int dashCooldownStartValue = 130;
   int dashCooldown = 0;
   int dashSpeed = 18;    
 
@@ -117,32 +117,34 @@ void updateXpos(float vx_temp) {
 
 void updateYpos() {
   y += vy;
-  if (y >= floor && vy > 0) {
+  if (y + h >= floor && vy > 0) {
     jumpCounterInAir = 0;
   }
-  if (y > floor) {
-    y = floor;
+  if (y + h > floor) {
+    y = floor - h;
     vy = 0;
   }
-  if (y < floor) {
+  if (y + h < floor) {
     vy += gravity;
   }  
 }
 
 void updateSwordPosition() {
-    xsword = x;
-    ysword = y;
+    int playerCenterX = x + w/2;
+    int playerCenterY = y + h/2;
+    xsword = playerCenterX;
+    ysword = playerCenterY;
     if (swordDirection.equals("right")) {
-      xsword += w;
+      xsword += w/2;
     }
     else if (swordDirection.equals("left")) {
-      xsword -= 2 * w;
+      xsword -= w/2 + hsword;
     }
     else if (swordDirection.equals("up")) {
-      ysword -= 2 * h;
+      ysword -= h/2 + hsword;
     }
     else if (swordDirection.equals("down")) {
-      ysword += h;
+      ysword += h/2;
     }
 }
 
