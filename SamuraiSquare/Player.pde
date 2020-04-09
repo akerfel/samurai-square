@@ -1,32 +1,35 @@
 public class Player {
+  
+  // Misc 
+  boolean isAlive = true;
+  float gravity = 0.8;
+  
+  // Position
   int x = 350;
   int y = 700;
+  
+  // Dimensions
   int w = 40;
   int h = 40;
-
+  
+  // Velocity
   float vx = 5;
   float vy = 0;
-  float upTickSpeed = 11;
-  float gravity = 0.8;
+  
+  // Sword
   float xsword = x;
   float ysword = y;
   int wsword = 6;
   int hsword = h * 2;
-
   String swordDirection = "right";
-  int ticksTillAttackDone = 0;
-  int ticksWhenAttackStart = 10;
 
+  // Jump
+  float upTickSpeed = 11;
+  int maxJumpsReady = 2;
+  int jumpsReady = maxJumpsReady;
   int collideWallTimer = 0;
-
-
-  // Jumps
-  boolean isInFirstJump = false;
-  boolean isInDoubleJump = false;
-  boolean isAlive = true;
-  int jumpCounterInAir = 0;
   
-  // Dashes. Temporarily increases vx and stops movement in y direction
+  // Dash. (Temporarily increases vx and stops movement in y direction)
   int maxDashesReady = 2;
   int dashesReady = maxDashesReady;
   int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
@@ -51,8 +54,8 @@ void activateDash() {
   if (dashesReady > 0 && dashTimer == 0) {
     dashTimer = dashTimerStartValue;
     dashesReady--;
-    if (jumpCounterInAir == 2) {
-      jumpCounterInAir--;  
+    if (jumpsReady == 0) {
+      jumpsReady++;  
     }
     vy = 0;
   }
@@ -66,9 +69,9 @@ void jump() {
   if (collideWallTimer > 0) {
       uptick(1.5);
   }
-  else if (jumpCounterInAir == 0 || jumpCounterInAir == 1) {
+  else if (jumpsReady > 0) {
     uptick(1);
-    jumpCounterInAir++;
+    jumpsReady--;
   }
 }
 
@@ -131,7 +134,7 @@ void updateXpos(float vx_temp) {
 void updateYpos() {
   y += vy;
   if (y + h >= floor && vy > 0) {
-    jumpCounterInAir = 0;
+    jumpsReady = maxJumpsReady;
   }
   if (y + h > floor) {
     y = floor - h;
