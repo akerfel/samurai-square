@@ -5,13 +5,13 @@ void drawEverything() {
   drawPlayer(); 
   drawGodModeText();
   drawScore();
-  drawDashReady();
+  drawdashIsReady();
 }
 
-void drawDashReady() {
-  if (player.dashCooldown == 0) {
-    fill(0, 200, 0);
-    circle(20, height - 20, 25);
+void drawdashIsReady() {
+  fill(0, 200, 0);
+  for (int i = 0; i < player.dashesReady; i++) {
+    circle(20 + 40 * i, height - 20, 25);
   }
 }
 

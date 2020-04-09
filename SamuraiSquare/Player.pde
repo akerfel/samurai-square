@@ -27,11 +27,11 @@ public class Player {
 
   int temp = 0;
   
-  // Dash. Temporarily increases vx and deactives gravity
+  // Dash. Temporarily increases vx and stops movement in y direction
+  int maxDashesReady = 2;
+  int dashesReady = maxDashesReady;
   int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
-  int dashTimer = 0;      // time left until speed boost ends
-  int dashCooldownStartValue = 130;
-  int dashCooldown = 0;
+  int dashTimer = 0;      // time left until dash ends
   int dashSpeed = 18;    
 
 void update() {
@@ -46,15 +46,12 @@ void updateDashTimer() {
   if (dashTimer > 0) {
     dashTimer--;  
   }
-  if (dashCooldown > 0) {
-    dashCooldown--;  
-  }
 }
 
 void activateDash() {
-  if (dashTimer == 0 && dashCooldown == 0) {
+  if (dashesReady > 0 && dashTimer == 0) {
     dashTimer = dashTimerStartValue;
-    dashCooldown = dashCooldownStartValue;
+    dashesReady--;
     if (jumpCounterInAir == 2) {
       jumpCounterInAir--;  
     }
@@ -118,12 +115,18 @@ void updateXpos(float vx_temp) {
     vx = -abs(vx);
     collideWallTimer = 10;
     deactiveDash();
+    if (dashesReady < maxDashesReady) {
+      dashesReady++;  
+    }
   }
   if (x < 0) {
     x = 0;
     vx = abs(vx);
     collideWallTimer = 10;
     deactiveDash();
+    if (dashesReady < maxDashesReady) {
+      dashesReady++;  
+    }
   }
 }
 
