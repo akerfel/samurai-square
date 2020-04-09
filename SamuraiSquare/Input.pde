@@ -1,5 +1,6 @@
 void keyPressed() {
   if (key == ' ') {
+    player.deactiveDash();
     player.jump();
   }
   if (!player.isAlive && key == ' ') {

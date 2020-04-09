@@ -17,17 +17,16 @@ public class Player {
   int ticksTillAttackDone = 0;
   int ticksWhenAttackStart = 10;
 
+  int collideWallTimer = 0;
+
+
+  // Jumps
   boolean isInFirstJump = false;
   boolean isInDoubleJump = false;
   boolean isAlive = true;
-
   int jumpCounterInAir = 0;
-
-  int collideWallTimer = 0;
-
-  int temp = 0;
   
-  // Dash. Temporarily increases vx and stops movement in y direction
+  // Dashes. Temporarily increases vx and stops movement in y direction
   int maxDashesReady = 2;
   int dashesReady = maxDashesReady;
   int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
@@ -75,7 +74,6 @@ void jump() {
 
 void uptick(float multiplier) {
   player.vy = -player.upTickSpeed * multiplier;
-  temp++;
 }
 
 void checkIfDie() {
