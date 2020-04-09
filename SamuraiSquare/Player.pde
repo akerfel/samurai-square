@@ -27,12 +27,36 @@ public class Player {
   int collideWallTimer = 0;
 
   int temp = 0;
+  
+  // Dash. Temporarily increases vx and deactives gravity
+  int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
+  int dashTimer = 0;      // time left until speed boost ends
+  int dashCooldownStartValue = 180;
+  int dashCooldown = 0;
+  int dashSpeed = 18;    
 
 void update() {
   updatePosition();
   updateSwordPosition();
   updateCollideWallTimer();
+  updateDashTimer();
   checkIfDie();
+}
+
+void updateDashTimer() {
+  if (dashTimer > 0) {
+    dashTimer--;  
+  }
+  if (dashCooldown > 0) {
+    dashCooldown--;  
+  }
+}
+
+void activateDash() {
+  if (dashTimer == 0 && dashCooldown == 0) {
+    dashTimer = dashTimerStartValue;
+    dashCooldown = dashCooldownStartValue;
+  }
 }
 
 void updateCollideWallTimer() {
@@ -65,7 +89,23 @@ void checkIfDie() {
 }
 
 void updatePosition() {
-  x += vx;
+  float vx_temp = vx;
+  if (dashTimer > 0) {
+    if (vx > 0) {
+      vx_temp = dashSpeed;
+    }
+    else {
+      vx_temp = -dashSpeed;
+    }
+  }
+  updatexpos(vx_temp);
+  if (!(dashTimer > 0)) {
+    updateypos();
+  }
+}
+
+void updatexpos(float vx_temp) {
+  x += vx_temp;
   if (x + w > width) {
     vx = -abs(vx);
     collideWallTimer = 10;
@@ -74,8 +114,10 @@ void updatePosition() {
     vx = abs(vx);
     collideWallTimer = 10;
   }
-  y += vy;
+}
 
+void updateypos() {
+  y += vy;
   if (y >= floor && vy > 0) {
     jumpCounterInAir = 0;
   }
@@ -85,7 +127,7 @@ void updatePosition() {
   }
   if (y < floor) {
     vy += gravity;
-  }
+  }  
 }
 
 void updateSwordPosition() {

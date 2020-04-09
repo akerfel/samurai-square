@@ -5,6 +5,14 @@ void drawEverything() {
   drawPlayer(); 
   drawGodModeText();
   drawScore();
+  drawDashReady();
+}
+
+void drawDashReady() {
+  if (player.dashCooldown == 0) {
+    fill(0, 200, 0);
+    circle(20, height - 20, 25);
+  }
 }
 
 void drawScore() {

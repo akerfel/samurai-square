@@ -19,5 +19,8 @@ void keyPressed() {
       if (keyCode == DOWN) {
         player.attack("down");
       }
+      if (keyCode == SHIFT) {
+        player.activateDash();
+      }
     }
 }

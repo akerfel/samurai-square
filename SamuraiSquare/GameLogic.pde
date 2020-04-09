@@ -1,11 +1,12 @@
 import java.util.Iterator;
 
 boolean shouldRemoveDeadEnemies = true;
-
 int floor = 700;
 int enemySpawnTimerInterval = 250;
 int enemySpawnTimer = 10;
 int score = 0;
+
+
 
 void updateLogic() {
   player.update();
