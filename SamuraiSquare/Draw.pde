@@ -97,8 +97,9 @@ void drawFloor() {
 }
 
 void drawGameOver() {
-  fill(0, 0, 0);
-  rectMode(CENTER);
-  text("Game over", width/2, height/2);
+  fill(255, 255, 255);
+  textAlign(CENTER);
+  text("Game over", width/2, height/2 - 25);
+  text("Score: " + score, width/2, height/2 + 25);
   rectMode(CORNER);
 }
