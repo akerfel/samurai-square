@@ -5,13 +5,23 @@ void drawEverything() {
   drawPlayer(); 
   drawGodModeText();
   drawScore();
-  drawdashIsReady();
+  drawDashesReady();
+  if (showDashesReady) {
+    drawJumpsReady();
+  }
 }
 
-void drawdashIsReady() {
+void drawDashesReady() {
   fill(0, 200, 0);
   for (int i = 0; i < player.dashesReady; i++) {
     circle(20 + 40 * i, height - 20, 25);
+  }
+}
+
+void drawJumpsReady() {
+  fill(102, 51, 153);
+  for (int i = 0; i < player.jumpsReady; i++) {
+    circle(width - (20 + 40 * i), height - 20, 25);
   }
 }
 
@@ -87,5 +97,8 @@ void drawFloor() {
 }
 
 void drawGameOver() {
+  fill(0, 0, 0);
+  rectMode(CENTER);
   text("Game over", width/2, height/2);
+  rectMode(CORNER);
 }

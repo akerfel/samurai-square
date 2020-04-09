@@ -29,11 +29,11 @@ public class Player {
   int jumpsReady = maxJumpsReady;
   int collideWallTimer = 0;
   
-  // Dash. (Temporarily increases vx and stops movement in y direction)
+  // Dash. (Temporarily increases vx and stops y movement)
   int maxDashesReady = 2;
   int dashesReady = maxDashesReady;
   int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
-  int dashTimer = 0;      // time left until dash ends
+  int dashTimer = 0; // time left until dash ends
   int dashSpeed = 18;    
 
 void update() {
