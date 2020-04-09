@@ -4,6 +4,13 @@ void drawEverything() {
   drawEnemies();
   drawPlayer(); 
   drawGodModeText();
+  drawScore();
+}
+
+void drawScore() {
+  fill(color(255, 255, 255));
+  textSize(32);
+  text(score, width - 60, 60);
 }
 
 void drawGodModeText() {

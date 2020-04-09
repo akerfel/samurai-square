@@ -22,17 +22,20 @@ public class Enemy {
   }
   
   void randomizeArmor() {
-    if (random(0, 1) < 0.5) {
+    if (random(0, 1) < 0.3) {
       hasTopArmor = true;  
     }
-    if (random(0, 1) < 0.5) {
+    if (random(0, 1) < 0.3) {
       hasBottomArmor = true;  
     }
-    if (random(0, 1) < 0.5) {
+    if (random(0, 1) < 0.3) {
       hasLeftArmor = true;  
     }
-    if (random(0, 1) < 0.5) {
+    if (random(0, 1) < 0.3) {
       hasRightArmor = true;  
+    }
+    if (hasTopArmor && hasRightArmor && hasLeftArmor) {
+        hasTopArmor = false;
     }
   }
   
@@ -73,6 +76,7 @@ public class Enemy {
       if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.wsword, player.hsword)) {
         if ((!(player.attackDirection.equals("down") && this.hasTopArmor)) && (!(player.attackDirection.equals("up") && this.hasBottomArmor))) {
           isAlive = false;
+          score++;
         }
       }
     }
@@ -81,6 +85,7 @@ public class Enemy {
       if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.hsword, player.wsword)) {
         if ((!(player.attackDirection.equals("left") && this.hasRightArmor)) && (!(player.attackDirection.equals("right") && this.hasLeftArmor))) {
           isAlive = false;
+          score++;
         }
       }
     }

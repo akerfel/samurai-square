@@ -11,7 +11,7 @@ public class Player {
   float xsword = x;
   float ysword = y;
   int wsword = 6;
-  int hsword = h * 3/2;
+  int hsword = h * 2;
 
   boolean isAttacking = false;
   String attackDirection = "right";
