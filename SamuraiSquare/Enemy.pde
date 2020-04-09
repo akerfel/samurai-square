@@ -22,16 +22,16 @@ public class Enemy {
   }
   
   void randomizeArmor() {
-    if (random(0, 1) < 0.3) {
+    if (random(0, 1) < 0.5) {
       hasTopArmor = true;  
     }
-    if (random(0, 1) < 0.3) {
+    if (random(0, 1) < 0.5) {
       hasBottomArmor = true;  
     }
-    if (random(0, 1) < 0.3) {
+    if (random(0, 1) < 0.5) {
       hasLeftArmor = true;  
     }
-    if (random(0, 1) < 0.3) {
+    if (random(0, 1) < 0.5) {
       hasRightArmor = true;  
     }
     if (hasTopArmor && hasRightArmor && hasLeftArmor) {

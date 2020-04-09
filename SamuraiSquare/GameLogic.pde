@@ -2,7 +2,7 @@ import java.util.Iterator;
 
 boolean shouldRemoveDeadEnemies = true;
 int floor = 700;
-int enemySpawnTimerInterval = 150;
+int enemySpawnTimerInterval = 80;
 int enemySpawnTimer = 10;
 int score = 0;
 

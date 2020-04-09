@@ -58,6 +58,7 @@ void activateDash() {
     if (jumpCounterInAir == 2) {
       jumpCounterInAir--;  
     }
+    vy = 0;
   }
 }
 
@@ -106,15 +107,23 @@ void updatePosition() {
   }
 }
 
+void deactiveDash() {
+  dashTimer = 0;  
+}
+
 void updateXpos(float vx_temp) {
   x += vx_temp;
   if (x + w > width) {
+    x = width - w;
     vx = -abs(vx);
     collideWallTimer = 10;
+    deactiveDash();
   }
   if (x < 0) {
+    x = 0;
     vx = abs(vx);
     collideWallTimer = 10;
+    deactiveDash();
   }
 }
 
