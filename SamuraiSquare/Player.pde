@@ -55,6 +55,9 @@ void activateDash() {
   if (dashTimer == 0 && dashCooldown == 0) {
     dashTimer = dashTimerStartValue;
     dashCooldown = dashCooldownStartValue;
+    if (jumpCounterInAir == 2) {
+      jumpCounterInAir--;  
+    }
   }
 }
 
