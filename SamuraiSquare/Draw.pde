@@ -74,7 +74,7 @@ void drawEnemy(Enemy enemy) {
 }
 
 void drawEnemyArmor(Enemy enemy) {
-  fill(98, 74, 46);
+  fill(243, 103, 8);
   if (enemy.hasTopArmor) {
     rect(enemy.x, enemy.y, enemy.w, enemy.h/4);
   }

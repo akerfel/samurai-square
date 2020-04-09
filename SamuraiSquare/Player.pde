@@ -67,7 +67,7 @@ void updateCollideWallTimer() {
 
 void jump() {
   if (collideWallTimer > 0) {
-      uptick(1.5);
+      uptick(1.8);
   }
   else if (jumpsReady > 0) {
     uptick(1);
