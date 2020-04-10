@@ -99,7 +99,12 @@ void drawFloor() {
 void drawGameOver() {
   fill(255, 255, 255);
   textAlign(CENTER);
-  text("Game over", width/2, height/2 - 25);
-  text("Score: " + score, width/2, height/2 + 25);
+  text("Game over", width/2, 50);
+  text("Score: " + score, width/2, 100);
+  text("Highscores:", width/2, 150);
+  ArrayList<Integer> highscores = getHighscores();
+  for (int i = 0; i < highscores.size(); i++) {
+    text(str(highscores.get(i)), width/2, 200 + i * 50);
+  }
   rectMode(CORNER);
 }
