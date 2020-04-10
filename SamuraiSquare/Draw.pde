@@ -106,11 +106,13 @@ void drawFloor() {
 void drawGameOver() {
   fill(255, 255, 255);
   textAlign(CENTER);
-  text("Game over. Restart: Enter", width/2, 50);
+  text("GAME OVER", width/2, 50);
   fill(0, 200, 0);
   text("Score: " + score, width/2, 100);
   fill(255, 255, 255);
-  text("Highscores:", width/2, 150);
+  text("Restart: Enter", width/2, 150);
+  fill(255, 255, 255);
+  text("Highscores:", width/2, 200);
   drawHighScores();
 }
 
@@ -124,7 +126,7 @@ void drawHighScores() {
     else {
       fill(255, 255, 255);
     }
-    text((i+1) + ". " + str(scoreToPrint), width/2, 200 + i * 50);
+    text((i+1) + ". " + str(scoreToPrint), width/2, 250 + i * 50);
   }
   rectMode(CORNER);
 }

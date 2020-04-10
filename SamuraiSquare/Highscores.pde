@@ -41,7 +41,7 @@ void saveHighscores(ArrayList<Integer> highscores) {
   for (int someScore :highscores) {
     output.println(str(someScore));
     i++;
-    if (i > 10) {
+    if (i >= 10) {
       break;  
     }
   }
