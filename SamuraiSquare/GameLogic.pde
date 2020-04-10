@@ -1,13 +1,5 @@
 import java.util.Iterator;
 
-boolean shouldRemoveDeadEnemies = true;
-int floor = 700;
-int enemySpawnTimerInterval = 100;
-int enemySpawnTimer = 10;
-int score = 0;
-
-
-
 void updateLogic() {
   player.update();
   updateEnemies();
@@ -35,7 +27,37 @@ void updateEnemySpawnTimer() {
 }
 
 void gameOver() {
-  gameState = GameState.GAMEOVER;  
+  gameState = GameState.GAMEOVER; 
+  saveHighScore();
+}
+
+void saveHighScore() {
+  //String[] highscores = loadStrings("highscores.txt");
+  //highscores[0] = str(score);
+  //saveStrings("highscores.txt", highscores);
+  
+  // Read the lines from highscores.txt and
+  // save them in the string arraylist "strScores"
+  ArrayList<String> strScores = new ArrayList<String>();
+  BufferedReader reader = createReader("highscores.txt");
+  String line = null;
+  try {
+    while ((line = reader.readLine()) != null) {
+      strScores.add(line);
+    }
+    reader.close();
+  } catch (IOException e) {
+    e.printStackTrace();
+  }
+  // add current score to strScores
+  strScores.add(str(score));
+  
+  output = createWriter("highscores.txt");
+  for (String strScore : strScores) {
+    output.println(strScore);
+  }
+  output.flush(); // Writes the remaining data to the file
+  output.close(); // Finishes the file
 }
 
 void spawnEnemy() {
@@ -44,6 +66,12 @@ void spawnEnemy() {
   }
 }
 
+void spawnSomeFloorEnemies () {
+  for (int i = 0; i < 5; i++) {
+    enemies.add(new Enemy(i * 200, floor - 100));
+  }
+}
+  
 void updateEnemies() {
     for (Enemy enemy :enemies) {
       enemy.update();

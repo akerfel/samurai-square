@@ -21,6 +21,12 @@ public class Enemy {
     randomizeArmor();
   }
   
+  public Enemy(int x, int y) {
+    this.x = x;
+    this.y = y;
+    randomizeArmor();
+  }
+  
   void randomizeArmor() {
     if (random(0, 1) < 0.5) {
       hasTopArmor = true;  
