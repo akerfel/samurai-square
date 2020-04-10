@@ -28,7 +28,7 @@ void updateEnemySpawnTimer() {
 
 void gameOver() {
   gameState = GameState.GAMEOVER; 
-  saveHighScore();
+  saveNewHighScore();  // will only save if actually is new highscore
 }
 
 void saveHighscores(ArrayList<Integer> highscores) {
@@ -65,10 +65,14 @@ ArrayList<Integer> getHighscores() {
   return highscores;
 }
 
-void saveHighScore() {
+void saveNewHighScore() {
+  // Load old highscores from file into list
   ArrayList<Integer> highscores = getHighscores();
+  // Add potentially new highscore
   highscores.add(score);
+  // Sort highscores 
   Collections.sort(highscores, Collections.reverseOrder());
+  // Save highscores from list into file
   saveHighscores(highscores);
 }
 
