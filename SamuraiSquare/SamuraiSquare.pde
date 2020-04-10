@@ -1,12 +1,15 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+// Settings
+boolean shouldDrawUsedDashSlots = false;  // greyed out. I like it false better. Easier to see slots left.
+
 // Cheats/Debug
 boolean godMode = false;
 boolean noEnemies = false;
 boolean showDashSlots = false;    // should probably be turned off. Too much info at once.
 boolean startRandomScore = false;
-boolean enemiesFloorStart = false;
+boolean dieInstant = false;        // by spawning some enemies close to ground
 
 // Declaring and instantiating 
 Player player;
@@ -35,15 +38,6 @@ void setup() {
     activateCheats();
 }
 
-void activateCheats() {
-  if (startRandomScore) {
-      score = int(random(1, 100));
-    }
-  if (enemiesFloorStart) {
-    spawnSomeFloorEnemies();
-  }
-}
-
 void draw() {
   switch(gameState) {
     case GAMEACTIVE:
@@ -56,4 +50,16 @@ void draw() {
     case STARTSCREEN:
       break;
   }
+}
+
+void gameOver() {
+  drawEverything();
+  gameState = GameState.GAMEOVER; 
+  saveCurrentScore();  // will only save if actually is new highscore
+}
+
+void resetGame() {
+  score = 0;
+  enemies.clear();
+  setup();  
 }

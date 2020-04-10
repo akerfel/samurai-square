@@ -16,6 +16,13 @@ void drawDashSlots() {
   for (int i = 0; i < player.dashSlots; i++) {
     circle(20 + 40 * i, height - 20, 25);
   }
+  // draw used up dash slots (greyed out)
+  if (shouldDrawUsedDashSlots) {
+    fill(200, 200, 200);
+    for (int i = player.dashSlots; i < player.maxDashSlots; i++) {
+      circle(20 + 40 * i, height - 20, 25);
+    }
+  }
 }
 
 void drawJumpSlots() {
@@ -104,6 +111,10 @@ void drawGameOver() {
   text("Score: " + score, width/2, 100);
   fill(255, 255, 255);
   text("Highscores:", width/2, 150);
+  drawHighScores();
+}
+
+void drawHighScores() {
   ArrayList<Integer> highscores = getHighscores();
   for (int i = 0; i < highscores.size(); i++) {
     int scoreToPrint = highscores.get(i);
@@ -113,7 +124,7 @@ void drawGameOver() {
     else {
       fill(255, 255, 255);
     }
-    text(str(scoreToPrint), width/2, 200 + i * 50);
+    text((i+1) + ". " + str(scoreToPrint), width/2, 200 + i * 50);
   }
   rectMode(CORNER);
 }
