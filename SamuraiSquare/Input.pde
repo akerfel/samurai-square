@@ -38,5 +38,5 @@ void keysPressedGAMEACTIVE() {
       if (keyCode == SHIFT) {
         player.activateDash();
       }
-    }
+  }
 }
