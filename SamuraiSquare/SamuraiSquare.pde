@@ -4,7 +4,7 @@ ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 // Cheats/Debug
 boolean godMode = false;
-boolean noEnemies = true;
+boolean noEnemies = false;
 boolean showDashesReady = false;    // should probably be turned off. Too much info at once.
 
 public enum GameState {
