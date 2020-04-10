@@ -9,15 +9,6 @@ void updateLogic() {
   }
 }
 
-void activateCheats() {
-  if (startRandomScore) {
-      score = int(random(1, 100));
-    }
-  if (dieInstant) {
-    spawnSomeFloorEnemies();
-  }
-}
-
 void removeDeadEnemies() {
   Iterator<Enemy> itEnemies = enemies.iterator();
   while (itEnemies.hasNext()) {
@@ -31,7 +22,7 @@ void updateEnemySpawnTimer() {
   enemySpawnTimer--;
   if (enemySpawnTimer < 0) {
     spawnEnemy();
-    enemySpawnTimer = enemySpawnTimerInterval;
+    enemySpawnTimer = int(enemySpawnTimerInterval / spawnMultiplier);
   }
 }
 

@@ -28,16 +28,17 @@ public class Enemy {
   }
   
   void randomizeArmor() {
-    if (random(0, 1) < 0.5) {
+    float actualSpawnArmorRate = spawnArmorRate * armorSpawnMultipler;
+    if (random(0, 1) < actualSpawnArmorRate) {
       hasTopArmor = true;  
     }
-    if (random(0, 1) < 0.5) {
+    if (random(0, 1) < actualSpawnArmorRate) {
       hasBottomArmor = true;  
     }
-    if (random(0, 1) < 0.5) {
+    if (random(0, 1) < actualSpawnArmorRate) {
       hasLeftArmor = true;  
     }
-    if (random(0, 1) < 0.5) {
+    if (random(0, 1) < actualSpawnArmorRate) {
       hasRightArmor = true;  
     }
     if (hasTopArmor && hasRightArmor && hasLeftArmor) {

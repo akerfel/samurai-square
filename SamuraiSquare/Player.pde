@@ -29,7 +29,7 @@ public class Player {
   
   // Walljump and wallTouchTimer
   boolean touchedWallAndHaveNotTouchedFloorSince = false;
-  float wallJumpMultiplier = 1.5;
+  float wallJumpMultiplier = 1;
   boolean dashRestoresAllJumpSlots = false; // should not be turned on. Gameplay should not be about flying.
   int distanceToWallForWallJump = 30;
   
