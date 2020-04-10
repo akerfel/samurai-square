@@ -6,7 +6,7 @@ boolean godMode = false;
 boolean noEnemies = false;
 boolean showDashesReady = false;    // should probably be turned off. Too much info at once.
 boolean startRandomScore = false;
-boolean enemiesFloorStart = false;
+boolean enemiesFloorStart = true;
 
 // Declaring and instantiating 
 Player player;

@@ -99,7 +99,7 @@ void drawFloor() {
 void drawGameOver() {
   fill(255, 255, 255);
   textAlign(CENTER);
-  text("Game over", width/2, 50);
+  text("Game over. Restart: Enter", width/2, 50);
   text("Score: " + score, width/2, 100);
   text("Highscores:", width/2, 150);
   ArrayList<Integer> highscores = getHighscores();

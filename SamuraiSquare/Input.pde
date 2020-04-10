@@ -1,14 +1,27 @@
 void keyPressed() {
+  switch(gameState) {
+    case GAMEACTIVE:
+      keysPressedGAMEACTIVE();
+      break;
+    case GAMEOVER:
+      keysPressedGAMEOVER();
+      break;
+    case STARTSCREEN:
+      break;
+  }
+}
+
+void keysPressedGAMEOVER() {
+  if (key == ENTER) {
+    resetGame();
+  }
+}
+
+void keysPressedGAMEACTIVE() {
   if (key == ' ') {
-    if (gameState == GameState.GAMEACTIVE) {
       player.deactiveDash();
       player.jump();
-    }
-    if (gameState == GameState.GAMEOVER) {
-      resetGame();
-    }
   }
-  
   if (key == CODED) {
       if (keyCode == RIGHT) {
         player.swordDirection = "right";
