@@ -40,7 +40,7 @@ void drawScore() {
 
 void drawGodModeText() {
   if (godMode) {
-    text("God Mode: ON", width - 150, 10);
+    text("God Mode: ON", width - 250, 100);
   }
 }
 
@@ -54,21 +54,8 @@ void drawPlayer() {
   fill(255, 0, 0);
   rect(player.x, player.y, player.w, player.h);
   drawSword();
-  }
-
-void drawSword() {
-  fill(217, 217, 217);
-  int swordHeight = player.hsword;
-  int swordWidth = player.wsword;
-  // If attacking left or right: swap sword width with height
-  if (player.swordIsLeftOrRight()) {
-    int temp = swordHeight;
-    swordHeight = swordWidth;
-    swordWidth = temp;
-  }
-  rect(player.xsword, player.ysword, swordWidth, swordHeight);
 }
-
+  
 void drawEnemy(Enemy enemy) {
   if (enemy.isAlive) { 
     fill(0, 100, 0); 
@@ -94,6 +81,19 @@ void drawEnemyArmor(Enemy enemy) {
   if (enemy.hasRightArmor) {
     rect(enemy.x + enemy.w * 3/4, enemy.y, enemy.w / 4, enemy.h);
   }
+}
+
+void drawSword() {
+  fill(217, 217, 217);
+  int swordHeight = player.hsword;
+  int swordWidth = player.wsword;
+  // If attacking left or right: swap sword width with height
+  if (player.swordIsLeftOrRight()) {
+    int temp = swordHeight;
+    swordHeight = swordWidth;
+    swordWidth = temp;
+  }
+  rect(player.xsword, player.ysword, swordWidth, swordHeight);
 }
 
 void drawFloor() {

@@ -26,13 +26,15 @@ public class Player {
   float upTickSpeed = 11;
   int maxJumpSlots = 2;
   int jumpSlots = maxJumpSlots;
-  int collideWallTimer = 0;
+  
+  // Walljump and wallTouchTimer
   boolean touchedWallAndHaveNotTouchedFloorSince = false;
-  float wallJumpMultiplier = 1;
+  float wallJumpMultiplier = 1.5;
   boolean dashRestoresAllJumpSlots = false; // should not be turned on. Gameplay should not be about flying.
+  int distanceToWallForWallJump = 30;
   
   // Dash. (Temporarily increases vx and stops y movement)
-  int maxDashSlots = 3;
+  int maxDashSlots = 3; 
   int dashSlots = maxDashSlots;
   int dashSlotsRestoredAfterWallTouch = 2;
   int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
@@ -42,7 +44,6 @@ public class Player {
 void update() {
   updatePosition();
   updateSwordPosition();
-  updateCollideWallTimer();
   updateDashTimer();
   checkIfDie();
 }
@@ -69,16 +70,17 @@ void activateDash() {
   }
 }
 
-void updateCollideWallTimer() {
-    collideWallTimer--;
-}
-
 void walljump() {
-  uptick(1 * wallJumpMultiplier);
+  if (superHighWallJump) {
+    uptick(1 * 3);  
+  }
+  else {
+    uptick(1 * wallJumpMultiplier);
+  }
 }
 
 void jump() {
-  if (collideWallTimer > 0 || player.x < 5 || player.x > width - 5) {
+  if ((y < floor - w) && (x < distanceToWallForWallJump || x + w > width - distanceToWallForWallJump)) {
       walljump();
   }
   else if (jumpSlots > 0) {
@@ -131,14 +133,12 @@ void checkIfTouchWall() {
   if (x + w > width) {
     x = width - w;
     vx = -abs(vx);
-    collideWallTimer = 15;
     deactiveDash();
     restoreSomeDashes();
   }
   if (x < 0) {
     x = 0;
     vx = abs(vx);
-    collideWallTimer = 15;
     deactiveDash();
     restoreSomeDashes();
   }
@@ -178,6 +178,10 @@ void updateYpos() {
   if (y + h < floor) {
     vy += gravity;
   }  
+  if (y < 0 ) {
+    vy = 0;
+    y = 0; 
+  }
 }
 
 void updateSwordPosition() {

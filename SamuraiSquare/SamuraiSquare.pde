@@ -10,6 +10,8 @@ boolean noEnemies = false;
 boolean showDashSlots = false;    // should probably be turned off. Too much info at once.
 boolean startRandomScore = false;
 boolean dieInstant = false;        // by spawning some enemies close to ground
+boolean superHighWallJump = false;
+
 
 // Declaring and instantiating 
 Player player;
