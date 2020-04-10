@@ -27,6 +27,7 @@ void updateEnemySpawnTimer() {
 }
 
 void gameOver() {
+  drawEverything();
   gameState = GameState.GAMEOVER; 
   saveNewHighScore();  // will only save if actually is new highscore
 }
