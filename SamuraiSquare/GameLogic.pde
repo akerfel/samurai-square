@@ -42,7 +42,7 @@ void saveHighscores(ArrayList<Integer> highscores) {
     }
   }
   output.flush(); // Writes the remaining data to the file
-  output.close(); // Finishes the file
+  output.close(); // Finishes the file 
 }
 
 ArrayList<Integer> getHighscores() {
