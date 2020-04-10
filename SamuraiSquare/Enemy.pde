@@ -46,7 +46,7 @@ public class Enemy {
   }
   
   void randomizeStartPosition() {
-    x = int(random(0, width));
+    x = int(random(0, width - w));
   }
   
   void updatePosition() {
