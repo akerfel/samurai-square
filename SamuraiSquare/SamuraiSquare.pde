@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-// Declaring and instantiating 
-Player player;
-ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-
 // Cheats/Debug
 boolean godMode = false;
 boolean noEnemies = false;
 boolean showDashesReady = false;    // should probably be turned off. Too much info at once.
-boolean startRandomScore = true;
-boolean enemiesFloorStart = true;
+boolean startRandomScore = false;
+boolean enemiesFloorStart = false;
+
+// Declaring and instantiating 
+Player player;
+ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 // misc
 boolean shouldRemoveDeadEnemies = true;
