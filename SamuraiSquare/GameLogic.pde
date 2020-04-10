@@ -31,43 +31,45 @@ void gameOver() {
   saveHighScore();
 }
 
-void saveHighScore() {
-  //String[] highscores = loadStrings("highscores.txt");
-  //highscores[0] = str(score);
-  //saveStrings("highscores.txt", highscores);
-  
-  // Read the lines from highscores.txt and
-  // save them in the Integer arraylist "scores"
-  // We convert them from string --> integer --> string
-  // We need to have them temporarily as integers in order to sort them
-  // correctly.
-  ArrayList<Integer> scores = new ArrayList<Integer>();
-  BufferedReader reader = createReader("highscores.txt");
-  String line = null;
-  try {
-    while ((line = reader.readLine()) != null) {
-      scores.add(int(line));
-    }
-    reader.close();
-  } catch (IOException e) {
-    e.printStackTrace();
-  }
-  // add current score to strScores
-  scores.add(score);
-  Collections.sort(scores, Collections.reverseOrder());
-  
+void saveHighscores(ArrayList<Integer> highscores) {
   output = createWriter("highscores.txt");
   int i = 0;
-  for (int someScore :scores) {
+  for (int someScore :highscores) {
     output.println(str(someScore));
     i++;
     if (i > 10) {
       break;  
     }
   }
-  
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
+}
+
+ArrayList<Integer> getHighscores() {
+  ArrayList<Integer> highscores = new ArrayList<Integer>();
+   // Read the lines from highscores.txt and
+  // save them in the Integer arraylist "scores"
+  // We convert them from string --> integer --> string (later).
+  // Why? We need to have them temporarily as integers in order to sort them
+  // correctly.
+  BufferedReader reader = createReader("highscores.txt");
+  String line = null;
+  try {
+    while ((line = reader.readLine()) != null) {
+      highscores.add(int(line));
+    }
+    reader.close();
+  } catch (IOException e) {
+    e.printStackTrace();
+  }
+  return highscores;
+}
+
+void saveHighScore() {
+  ArrayList<Integer> highscores = getHighscores();
+  highscores.add(score);
+  Collections.sort(highscores, Collections.reverseOrder());
+  saveHighscores(highscores);
 }
 
 void spawnEnemy() {
