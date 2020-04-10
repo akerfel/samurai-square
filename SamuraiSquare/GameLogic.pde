@@ -32,7 +32,7 @@ void gameOver() {
 }
 
 void saveHighscores(ArrayList<Integer> highscores) {
-  output = createWriter("highscores.txt");
+  output = createWriter("data/highscores.txt");
   int i = 0;
   for (int someScore :highscores) {
     output.println(str(someScore));
@@ -52,7 +52,7 @@ ArrayList<Integer> getHighscores() {
   // We convert them from string --> integer --> string (later).
   // Why? We need to have them temporarily as integers in order to sort them
   // correctly.
-  BufferedReader reader = createReader("highscores.txt");
+  BufferedReader reader = createReader("data/highscores.txt");
   String line = null;
   try {
     while ((line = reader.readLine()) != null) {
@@ -66,6 +66,8 @@ ArrayList<Integer> getHighscores() {
 }
 
 void saveNewHighScore() {
+  // If highscores.txt does not exist, create it
+  createHighscoresFile();
   // Load old highscores from file into list
   ArrayList<Integer> highscores = getHighscores();
   // Add potentially new highscore
@@ -74,6 +76,17 @@ void saveNewHighScore() {
   Collections.sort(highscores, Collections.reverseOrder());
   // Save highscores from list into file
   saveHighscores(highscores);
+}
+
+void createHighscoresFile() {
+  File f = dataFile("highscores.txt");  // automatically has "data/" in front
+  boolean exists = f.isFile();
+  if(!exists) {
+    // Create "highscores.txt"
+    output = createWriter("data/highscores.txt");
+    output.flush(); // Writes the remaining data to the file
+    output.close(); // Finishes the file
+  }
 }
 
 void spawnEnemy() {
