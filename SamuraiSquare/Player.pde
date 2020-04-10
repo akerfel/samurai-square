@@ -66,7 +66,7 @@ void updateCollideWallTimer() {
 }
 
 void jump() {
-  if (collideWallTimer > 0) {
+  if (collideWallTimer > 0 || player.x < 5 || player.x > width - 5) {
       uptick(1.8);
   }
   else if (jumpsReady > 0) {
@@ -148,6 +148,9 @@ void restoreSomeDashes() {
 
 void updateYpos() {
   y += vy;
+  if (y + h == floor) {
+     touchedWallAndHaveNotTouchedFloorSince = false;
+  }
   if (y + h >= floor && vy > 0) {
     jumpsReady = maxJumpsReady;
     touchedWallAndHaveNotTouchedFloorSince = false;
