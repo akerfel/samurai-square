@@ -39,7 +39,9 @@ void gameOver() {
 }
 
 void spawnEnemy() {
+  if (!noEnemies) {
     enemies.add(new Enemy());
+  }
 }
 
 void updateEnemies() {

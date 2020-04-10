@@ -27,6 +27,7 @@ public class Player {
   int maxJumpsReady = 2;
   int jumpsReady = maxJumpsReady;
   int collideWallTimer = 0;
+  boolean touchedWallAndHaveNotTouchedFloorSince = false;
   
   // Dash. (Temporarily increases vx and stops y movement)
   int maxDashesReady = 2;
@@ -110,30 +111,46 @@ void deactiveDash() {
 
 void updateXpos(float vx_temp) {
   x += vx_temp;
+  checkIfTouchWall();
+  
+}
+
+void checkIfTouchWall() {
   if (x + w > width) {
     x = width - w;
     vx = -abs(vx);
-    collideWallTimer = 10;
+    collideWallTimer = 15;
     deactiveDash();
-    if (dashesReady < maxDashesReady) {
-      dashesReady++;  
-    }
+    restoreSomeDashes();
   }
   if (x < 0) {
     x = 0;
     vx = abs(vx);
-    collideWallTimer = 10;
+    collideWallTimer = 15;
     deactiveDash();
-    if (dashesReady < maxDashesReady) {
-      dashesReady++;  
-    }
+    restoreSomeDashes();
   }
+}
+
+void restoreSomeDashes() {
+  if (dashesReady < maxDashesReady) {
+      // Aöl dashes are restored if you touch two walls without touching the floor in between.
+      if (touchedWallAndHaveNotTouchedFloorSince) {
+        dashesReady = maxDashesReady;
+      }
+      // One dash is restored if you touch a wall.
+      else {
+        dashesReady++;  
+      }
+    }
+  touchedWallAndHaveNotTouchedFloorSince = true;
 }
 
 void updateYpos() {
   y += vy;
   if (y + h >= floor && vy > 0) {
     jumpsReady = maxJumpsReady;
+    touchedWallAndHaveNotTouchedFloorSince = false;
   }
   if (y + h > floor) {
     y = floor - h;
