@@ -37,25 +37,35 @@ void saveHighScore() {
   //saveStrings("highscores.txt", highscores);
   
   // Read the lines from highscores.txt and
-  // save them in the string arraylist "strScores"
-  ArrayList<String> strScores = new ArrayList<String>();
+  // save them in the Integer arraylist "scores"
+  // We convert them from string --> integer --> string
+  // We need to have them temporarily as integers in order to sort them
+  // correctly.
+  ArrayList<Integer> scores = new ArrayList<Integer>();
   BufferedReader reader = createReader("highscores.txt");
   String line = null;
   try {
     while ((line = reader.readLine()) != null) {
-      strScores.add(line);
+      scores.add(int(line));
     }
     reader.close();
   } catch (IOException e) {
     e.printStackTrace();
   }
   // add current score to strScores
-  strScores.add(str(score));
+  scores.add(score);
+  Collections.sort(scores, Collections.reverseOrder());
   
   output = createWriter("highscores.txt");
-  for (String strScore : strScores) {
-    output.println(strScore);
+  int i = 0;
+  for (int someScore :scores) {
+    output.println(str(someScore));
+    i++;
+    if (i > 10) {
+      break;  
+    }
   }
+  
   output.flush(); // Writes the remaining data to the file
   output.close(); // Finishes the file
 }
