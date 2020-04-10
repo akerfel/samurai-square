@@ -5,22 +5,22 @@ void drawEverything() {
   drawPlayer(); 
   drawGodModeText();
   drawScore();
-  drawDashesReady();
-  if (showDashesReady) {
-    drawJumpsReady();
+  drawDashSlots();
+  if (showDashSlots) {
+    drawJumpSlots();
   }
 }
 
-void drawDashesReady() {
+void drawDashSlots() {
   fill(0, 200, 0);
-  for (int i = 0; i < player.dashesReady; i++) {
+  for (int i = 0; i < player.dashSlots; i++) {
     circle(20 + 40 * i, height - 20, 25);
   }
 }
 
-void drawJumpsReady() {
+void drawJumpSlots() {
   fill(102, 51, 153);
-  for (int i = 0; i < player.jumpsReady; i++) {
+  for (int i = 0; i < player.jumpSlots; i++) {
     circle(width - (20 + 40 * i), height - 20, 25);
   }
 }

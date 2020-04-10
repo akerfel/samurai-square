@@ -4,7 +4,7 @@ import java.util.Collections;
 // Cheats/Debug
 boolean godMode = false;
 boolean noEnemies = false;
-boolean showDashesReady = false;    // should probably be turned off. Too much info at once.
+boolean showDashSlots = false;    // should probably be turned off. Too much info at once.
 boolean startRandomScore = false;
 boolean enemiesFloorStart = false;
 

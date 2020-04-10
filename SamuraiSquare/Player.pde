@@ -24,14 +24,17 @@ public class Player {
 
   // Jump
   float upTickSpeed = 11;
-  int maxJumpsReady = 2;
-  int jumpsReady = maxJumpsReady;
+  int maxJumpSlots = 2;
+  int jumpSlots = maxJumpSlots;
   int collideWallTimer = 0;
   boolean touchedWallAndHaveNotTouchedFloorSince = false;
+  float wallJumpMultiplier = 1;
+  boolean dashRestoresAllJumpSlots = false; // should not be turned on. Gameplay should not be about flying.
   
   // Dash. (Temporarily increases vx and stops y movement)
-  int maxDashesReady = 2;
-  int dashesReady = maxDashesReady;
+  int maxDashSlots = 3;
+  int dashSlots = maxDashSlots;
+  int dashSlotsRestoredAfterWallTouch = 2;
   int dashTimerStartValue = 13; //speedBoostTimer will get this value when speed bost starts
   int dashTimer = 0; // time left until dash ends
   int dashSpeed = 18;    
@@ -51,11 +54,16 @@ void updateDashTimer() {
 }
 
 void activateDash() {
-  if (dashesReady > 0 && dashTimer == 0) {
+  if (dashSlots > 0 && dashTimer == 0) {
     dashTimer = dashTimerStartValue;
-    dashesReady--;
-    if (jumpsReady == 0) {
-      jumpsReady++;  
+    dashSlots--;
+    if (jumpSlots < maxJumpSlots) {
+      if (dashRestoresAllJumpSlots) {
+        jumpSlots = maxJumpSlots;  
+      }
+      else {
+        jumpSlots++;    
+      }
     }
     vy = 0;
   }
@@ -65,13 +73,17 @@ void updateCollideWallTimer() {
     collideWallTimer--;
 }
 
+void walljump() {
+  uptick(1 * wallJumpMultiplier);
+}
+
 void jump() {
   if (collideWallTimer > 0 || player.x < 5 || player.x > width - 5) {
-      uptick(1);
+      walljump();
   }
-  else if (jumpsReady > 0) {
+  else if (jumpSlots > 0) {
     uptick(1);
-    jumpsReady--;
+    jumpSlots--;
   }
 }
 
@@ -133,14 +145,18 @@ void checkIfTouchWall() {
 }
 
 void restoreSomeDashes() {
-  if (dashesReady < maxDashesReady) {
-      // Aöl dashes are restored if you touch two walls without touching the floor in between.
+  if (dashSlots < maxDashSlots) {
+      // All dashes are restored if you touch two walls without touching the floor in between.
       if (touchedWallAndHaveNotTouchedFloorSince) {
-        dashesReady = maxDashesReady;
+        dashSlots = maxDashSlots;
       }
       // One dash is restored if you touch a wall.
       else {
-        dashesReady++;  
+        dashSlots += dashSlotsRestoredAfterWallTouch;  
+      }
+      // Make sure you dont have over max amount of dash slots  
+      if (dashSlots > maxDashSlots) {
+        dashSlots = maxDashSlots;  
       }
     }
   touchedWallAndHaveNotTouchedFloorSince = true;
@@ -152,7 +168,7 @@ void updateYpos() {
      touchedWallAndHaveNotTouchedFloorSince = false;
   }
   if (y + h >= floor && vy > 0) {
-    jumpsReady = maxJumpsReady;
+    jumpSlots = maxJumpSlots;
     touchedWallAndHaveNotTouchedFloorSince = false;
   }
   if (y + h > floor) {
