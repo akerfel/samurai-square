@@ -39,7 +39,7 @@ GameState gameState;
 PrintWriter output;
 
 void setup() {
-    size(1000, 800);
+    size(900, 750);
     player = new Player();
     gameState = GameState.GAMEACTIVE;
     activateGameCheats(); // should only be activated at game launch, not every round
