@@ -23,7 +23,7 @@ ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 // misc
 boolean shouldRemoveDeadEnemies = true;
-int floor = 700;
+int floor = 650;
 int enemySpawnTimerInterval = 100;      
 int enemySpawnTimer = 10;
 int score = 0;
