@@ -1,3 +1,16 @@
+// TO-DO
+// INPUT mode 1:
+// X/space = jump, Z/shift = dash, c/enter = restart
+// arrow keys = sword direction
+
+// INPUT mode 2:
+// LMB = jump, RMB = dash
+// wasd = sword direction
+
+// INPUT MODE 3:
+// LMB = jump, RMB = dash
+// mouse = sword direction
+
 void keyPressed() {
   switch(gameState) {
     case GAMEACTIVE:
@@ -12,7 +25,7 @@ void keyPressed() {
 }
 
 void keysPressedGAMEOVER() {
-  if (key == ENTER) {
+  if (key == ENTER || key == 'c') {
     resetGame();
   }
 }
@@ -22,17 +35,24 @@ void keysPressedGAMEACTIVE() {
       player.deactiveDash();
       player.jump();
   }
+  else if (key == 'x') {
+      player.deactiveDash();
+      player.jump();
+  }
+  else if (key == 'z') {
+      player.activateDash();
+  }
   if (key == CODED) {
       if (keyCode == RIGHT) {
         player.swordDirection = "right";
       }
-      if (keyCode == LEFT) {
+      else if (keyCode == LEFT) {
         player.swordDirection = "left";
       }
-      if (keyCode == UP) {
+      else if (keyCode == UP) {
         player.swordDirection = "up";
       }
-      if (keyCode == DOWN) {
+      else if (keyCode == DOWN) {
         player.swordDirection = "down";
       }
       if (keyCode == SHIFT) {
