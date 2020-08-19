@@ -25,17 +25,14 @@ void keyPressed() {
 }
 
 void keysPressedGAMEOVER() {
-  if (key == ENTER || key == 'c') {
+  if (key == ENTER || key == 'c' || key == ' ') {
     resetGame();
   }
 }
 
 void keysPressedGAMEACTIVE() {
-  if (key == ' ') {
-      player.deactiveDash();
-      player.jump();
-  }
-  else if (key == 'x') {
+  checkWASD();
+  if (key == ' ' || key == 'x') {
       player.deactiveDash();
       player.jump();
   }
@@ -59,4 +56,33 @@ void keysPressedGAMEACTIVE() {
         player.activateDash();
       }
   }
+}
+
+void checkWASD() {
+  if (key == 'd') {
+    player.swordDirection = "right";
+  }
+  else if (key == 'a') {
+    player.swordDirection = "left";
+  }
+  else if (key == 'w') {
+    player.swordDirection = "up";
+  }
+  else if (key == 's') {
+    player.swordDirection = "down";
+  }
+}
+
+void mousePressed() {
+    switch(gameState) {
+        case GAMEACTIVE:
+          if (mouseButton == LEFT) {
+              player.deactiveDash();
+              player.jump();
+          }
+          if (mouseButton == RIGHT) {
+              player.activateDash();
+          }
+          break;
+      }
 }

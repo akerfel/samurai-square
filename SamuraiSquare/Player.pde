@@ -212,13 +212,4 @@ public class Player {
                 break;
         }
     }
-    
-    boolean swordIsLeftOrRight() {
-        return (swordDirection.equals("right") || swordDirection.equals("left"));
-    }
-    
-    boolean swordIsUpOrDown() {
-        return (swordDirection.equals("up") || swordDirection.equals("down"));
-    }
-
 }
