@@ -89,7 +89,7 @@ public class Enemy {
     }
     // swap sword width and height if attacking left or right 
     else if (player.swordIsLeftOrRight()) {
-      if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.hsword, player.wsword)) {
+      if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.wsword, player.hsword)) {
         if ((!(player.swordDirection.equals("left") && this.hasRightArmor)) && (!(player.swordDirection.equals("right") && this.hasLeftArmor))) {
           isAlive = false;
           score++;

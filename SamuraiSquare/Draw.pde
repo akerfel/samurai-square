@@ -85,15 +85,7 @@ void drawEnemyArmor(Enemy enemy) {
 
 void drawSword() {
   fill(217, 217, 217);
-  int swordHeight = player.hsword;
-  int swordWidth = player.wsword;
-  // If attacking left or right: swap sword width with height
-  if (player.swordIsLeftOrRight()) {
-    int temp = swordHeight;
-    swordHeight = swordWidth;
-    swordWidth = temp;
-  }
-  rect(player.xsword, player.ysword, swordWidth, swordHeight);
+  rect(player.xsword, player.ysword, player.wsword, player.hsword);
 }
 
 void drawFloor() {
