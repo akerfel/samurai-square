@@ -1,6 +1,7 @@
 # samurai-square
 
 Alt. names:
+* Samurai Square
 * Flow of the Samurai
 * Samurai Flow
 * Ninja Flow
