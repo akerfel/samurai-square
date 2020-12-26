@@ -8,6 +8,4 @@ Alt. names:
 * Samurai Dash
 * Ninja Dash
 * Dashing Samurai
-* Dash of the Samurai
-* Flow of the Samurai
 * Flow of the Ninja
