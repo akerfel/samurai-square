@@ -1,6 +1,8 @@
 # samurai-square
 
-Alt. names:
+![java_8DdTbmwWMI](https://user-images.githubusercontent.com/45148959/205672035-677250df-3846-45a6-bf78-73a91c6e272a.gif)
+
+## Alt. names:
 * Samurai Square
 * Flow of the Samurai
 * Samurai Flow
