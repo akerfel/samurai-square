@@ -1,6 +1,6 @@
 void drawEverything() {
     clear();
-    background(200);
+    background(0);
     drawFloor();
     drawEnemies();
     drawPlayer();
