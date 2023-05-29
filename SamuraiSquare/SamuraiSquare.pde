@@ -11,28 +11,28 @@ boolean showDashSlots = false;    // should probably be turned off. Too much inf
 boolean startRandomScore = false;
 boolean dieInstant = false;        // by spawning some enemies close to ground
 boolean superHighWallJump = false;
-  
+
 // Multiplier cheats/debug. Set to 1 for default behavior.
 float spawnMultiplier = 1;
 float armorSpawnMultipler = 1;
 float fpsMultiplier = 1;        // for slowmo
 
-// Declaring and instantiating 
+// Declaring and instantiating
 Player player;
 ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 // misc
 boolean shouldRemoveDeadEnemies = true;
 int floor = 650;
-int enemySpawnTimerInterval = 100;      
+int enemySpawnTimerInterval = 100;
 int enemySpawnTimer = 10;
 int score = 0;
 float spawnArmorRate = 0.5;
 
 public enum GameState {
-  GAMEOVER,
-  STARTSCREEN,
-  GAMEACTIVE
+    GAMEOVER,
+        STARTSCREEN,
+        GAMEACTIVE
 }
 GameState gameState;
 
@@ -47,43 +47,43 @@ void setup() {
 }
 
 void activateGameCheats() {
-   // empty atm
+    // empty atm
 }
 
 void activateRoundCheats() {
-  if (startRandomScore) {
-      score = int(random(1, 100));
+    if (startRandomScore) {
+        score = int(random(1, 100));
     }
-  if (dieInstant) {
-    spawnSomeFloorEnemies();
-  }
-  frameRate(int(60 * fpsMultiplier));
+    if (dieInstant) {
+        spawnSomeFloorEnemies();
+    }
+    frameRate(int(60 * fpsMultiplier));
 }
 
 void draw() {
-  switch(gameState) {
+    switch(gameState) {
     case GAMEACTIVE:
-      drawEverything();
-      updateLogic();
-      break;
+        drawEverything();
+        updateLogic();
+        break;
     case GAMEOVER:
-      drawGameOver();
-      break;
+        drawGameOver();
+        break;
     case STARTSCREEN:
-      break;
-  }
+        break;
+    }
 }
 
 void gameOver() {
-  drawEverything();
-  gameState = GameState.GAMEOVER; 
-  saveCurrentScore();  // will only save if actually is new highscore
+    drawEverything();
+    gameState = GameState.GAMEOVER;
+    saveCurrentScore();  // will only save if actually is new highscore
 }
 
 void resetGame() {
-  score = 0;
-  enemies.clear();
-  player = new Player();
-  gameState = GameState.GAMEACTIVE;
-  activateRoundCheats();
+    score = 0;
+    enemies.clear();
+    player = new Player();
+    gameState = GameState.GAMEACTIVE;
+    activateRoundCheats();
 }

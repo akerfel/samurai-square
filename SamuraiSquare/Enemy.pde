@@ -1,83 +1,83 @@
 public class Enemy {
-  int x;
-  int y = 50;
-  int w = 35;
-  int h = 35;
-  float vx = 2.5;
-  float vy = 2.5;
-  boolean isAlive = true;
-  // when spawn: fall to ground, so it wont just spawn directly on the player
-  boolean isFalling = true; 
-  
-  
-  boolean hasTopArmor;
-  boolean hasBottomArmor;
-  boolean hasLeftArmor;
-  boolean hasRightArmor;
-  
-  
-  public Enemy() {
-    randomizeStartPosition();
-    randomizeArmor();
-  }
-  
-  public Enemy(int x, int y) {
-    this.x = x;
-    this.y = y;
-    randomizeArmor();
-  }
-  
-  void randomizeArmor() {
-    float actualSpawnArmorRate = spawnArmorRate * armorSpawnMultipler;
-    if (random(0, 1) < actualSpawnArmorRate) {
-      hasTopArmor = true;  
+    int x;
+    int y = 50;
+    int w = 35;
+    int h = 35;
+    float vx = 2.5;
+    float vy = 2.5;
+    boolean isAlive = true;
+    // when spawn: fall to ground, so it wont just spawn directly on the player
+    boolean isFalling = true;
+
+
+    boolean hasTopArmor;
+    boolean hasBottomArmor;
+    boolean hasLeftArmor;
+    boolean hasRightArmor;
+
+
+    public Enemy() {
+        randomizeStartPosition();
+        randomizeArmor();
     }
-    if (random(0, 1) < actualSpawnArmorRate) {
-      hasBottomArmor = true;  
+
+    public Enemy(int x, int y) {
+        this.x = x;
+        this.y = y;
+        randomizeArmor();
     }
-    if (random(0, 1) < actualSpawnArmorRate) {
-      hasLeftArmor = true;  
+
+    void randomizeArmor() {
+        float actualSpawnArmorRate = spawnArmorRate * armorSpawnMultipler;
+        if (random(0, 1) < actualSpawnArmorRate) {
+            hasTopArmor = true;
+        }
+        if (random(0, 1) < actualSpawnArmorRate) {
+            hasBottomArmor = true;
+        }
+        if (random(0, 1) < actualSpawnArmorRate) {
+            hasLeftArmor = true;
+        }
+        if (random(0, 1) < actualSpawnArmorRate) {
+            hasRightArmor = true;
+        }
+        if (hasTopArmor && hasRightArmor && hasLeftArmor) {
+            hasTopArmor = false;
+        }
     }
-    if (random(0, 1) < actualSpawnArmorRate) {
-      hasRightArmor = true;  
+
+    void randomizeStartPosition() {
+        x = int(random(50, width - w - 50));
     }
-    if (hasTopArmor && hasRightArmor && hasLeftArmor) {
-        hasTopArmor = false;
+
+    void updatePosition() {
+        if (isFalling) {
+            y += vy;
+            if (y + h >= floor) {
+                y = floor - h;
+                isFalling = false;
+                vy = 0;
+            }
+        }
+        // Else is on floor
+        else {
+            x += vx;
+            if (x + w > width) {
+                vx = -abs(vx);
+            }
+            if (x < 0) {
+                vx = abs(vx);
+            }
+        }
     }
-  }
-  
-  void randomizeStartPosition() {
-    x = int(random(50, width - w - 50));
-  }
-  
-  void updatePosition() {
-    if (isFalling) {
-      y += vy;
-      if (y + h >= floor) {
-        y = floor - h;
-        isFalling = false;
-        vy = 0;
-      }
+
+    void update() {
+        if (isAlive) {
+            updatePosition();
+            checkIfHit();
+        }
     }
-    // Else is on floor
-    else {
-      x += vx;
-      if (x + w > width) {
-        vx = -abs(vx);  
-      }
-      if (x < 0) {
-        vx = abs(vx);  
-      }
-    }
-  }
-  
-  void update() {
-     if (isAlive) {
-       updatePosition();
-       checkIfHit();
-     }
-  }
-  
+
     void checkIfHit() {
         if (rectsAreColliding(x, y, w, h, player.xsword, player.ysword, player.wsword, player.hsword)) {
             if ((!(player.swordDirection.equals("down")     && this.hasTopArmor)) &&
